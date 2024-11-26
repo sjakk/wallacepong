@@ -119,3 +119,31 @@ SDL_Delay(1000/60);
 }
 
 
+void draw_game(SDL_Renderer *renderer, Barra player, Barra cpu, Bola ball){
+
+SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255 );
+	SDL_Rect* player_rect = &player.rect;
+	SDL_Rect* cpu_rect = &cpu.rect;
+	SDL_Rect* ball_rect = &ball.rect;
+	SDL_RenderFillRect(renderer, player_rect);
+	SDL_RenderFillRect(renderer, cpu_rect);
+	SDL_RenderFillRect(renderer, ball_rect);
+	SDL_RenderDrawLine(renderer, WINDOW_WIDTH / 2, 0, WINDOW_WIDTH / 2, WINDOW_HEIGHT);
+}
+
+
+void render_score(SDL_Renderer *renderer, const char *score_str, TTF_Font *font, SDL_Rect *rect, SDL_Color *color){
+
+SDL_Surface *surface;
+    SDL_Texture *texture;
+    surface = TTF_RenderText_Solid(font, score_str, *color);
+    texture = SDL_CreateTextureFromSurface(renderer, surface);
+    rect->x = (WINDOW_WIDTH / 2) - 20;
+    rect->y = 0;
+    rect->w = surface->w;
+    rect->h = surface->h;
+    SDL_FreeSurface(surface);
+    SDL_RenderCopy(renderer, texture, NULL, rect);
+    SDL_DestroyTexture(texture);
+
+}

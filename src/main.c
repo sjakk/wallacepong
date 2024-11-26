@@ -8,7 +8,7 @@
 #include "barra.h"
 #include "bola.h"
 #include "menu.h"
-
+#include "gamescene.h"
 
 
 
@@ -75,9 +75,13 @@ int main(void){
 		if(selected == 0){
 		menu_handler(event,&running,&players,&selected);
 		draw_menu(renderer,font,players);
+		}else{
+			if(players == 1) one_player_logic(event,&running,&ball,&player1,&player2,score_str,&paused);
 		}
-		
 
+		
+		render_score(renderer,score_str,font,&score_rect,&White);
+		draw_game(renderer,player1,player2,ball);
 
 
 		redraw(renderer);
