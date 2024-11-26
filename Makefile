@@ -1,5 +1,5 @@
 All:
-	gcc src/*c -o wallace -lSDL2
+	gcc src/*c -o wallace -lSDL2 -lSDL2_ttf
 
 
 run:
