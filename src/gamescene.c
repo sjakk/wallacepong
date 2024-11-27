@@ -67,9 +67,11 @@ event_handler(event, player, cpu, running, paused);
 		cpu_logic(cpu, ball);
 		//Win Conditions
 		if(player->score >= 5 || cpu->score >= 5){
-			sprintf(score_str, "%d  %d", player->score, cpu->score);
+
 			player->score = 0;
 			cpu->score = 0;
+
+			sprintf(score_str, "%d  %d", player->score, cpu->score);
 		}
 	}
 
@@ -80,6 +82,23 @@ event_handler(event, player, cpu, running, paused);
 
 
 
+void two_player_logic(SDL_Event event, int *running, Bola *ball, Barra *player1, Barra *player2, char *score_str, int *paused){
 
+event_handler(event,player1,player2,running,paused);
+if(*paused == -1){
+	player_logic(player1);
+	player_logic(player2);
+        logic_ball(ball,player1,player2,score_str);
+
+	if(player1->score >= 5 || player2->score >= 5){
+		sprintf(score_str,"%d   %d", player1->score,player2->score);
+		player1->score = 0;
+		player2->score = 0;
+	}
+
+}
+
+
+}
 
 

@@ -77,6 +77,7 @@ int main(void){
 		draw_menu(renderer,font,players);
 		}else{
 			if(players == 1) one_player_logic(event,&running,&ball,&player1,&player2,score_str,&paused);
+			else two_player_logic(event,&running,&ball,&player1,&player2,score_str,&paused);
 		}
 
 		
